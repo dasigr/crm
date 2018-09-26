@@ -1,0 +1,209 @@
+<?php
+/**
+ * @file
+ * Primarily Drupal hooks and global API functions to handle the form data.
+ *
+ * This is the main module file for Commerce Quickorder. The main entry points
+ * into this module are commerce_quickorder_form() and
+ * commerce_quickorder_form_submit(), where it handles creating the form and
+ * saving the data.
+ */
+
+
+/**
+ * Implements hook_menu().
+ */
+function commerce_quickorder_menu() {
+  $items = array();
+  $items['quick-order'] = array(
+    'title' => 'Quick Order',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('commerce_quickorder_form'),
+    'access arguments' => array('access checkout'),
+    'type' => MENU_SUGGESTED_ITEM,
+  );
+  return $items;
+}
+
+/**
+ * Implementation of hook_theme.
+ */
+function commerce_quickorder_theme() {
+  return array(
+    'commerce_quickorder_form_table' => array(
+      // The renderable element is the form.
+      'render element' => 'form',
+    ),
+  );
+}
+
+/**
+ * Theme callback for the form table.
+ */
+function theme_commerce_quickorder_form_table(&$variables) {
+  // Get the userful values.
+  $form = $variables['form'];
+  $rows = $form['rows'];
+  $header = $form['#header'];
+
+  // Setup the structure to be rendered and returned.
+  $content = array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => array(),
+  );
+
+  // Traverse each row.  @see element_chidren().
+  foreach (element_children($rows) as $row_index) {
+    $row = array();
+    // Traverse each column in the row.  @see element_children().
+    foreach (element_children($rows[$row_index]) as $col_index) {
+      // Render the column form element.
+      $row[] = drupal_render($rows[$row_index][$col_index]);
+    }
+    // Add the row to the table.
+    $content['#rows'][] = $row;
+  }
+
+  // Redner the table and return.
+  return drupal_render($content);
+}
+
+/**
+ * Create custom form for adding items to cart.
+ */
+function commerce_quickorder_form($form, &$form_state) {
+  if (empty($form_state['num_items'])) {
+    $form_state['num_items'] = 1;
+  }
+
+  $form['table'] = array(
+    // Theme this part of the form as a table.
+    '#theme' => 'commerce_quickorder_form_table',
+    // Pass header information to the theme function.
+    '#header' => array(t('Part Number'), t('Quantity')),
+    // Rows in the form table.
+    'rows' => array(
+      // Make it a tree for easier traversing of the entered values on submission.
+      '#tree' => TRUE,
+    ),
+  );
+
+  // Build the number of name fieldsets indicated by $form_state['num_items']
+  for ($i = 0; $i < $form_state['num_items']; $i++) {
+    $form['table']['rows'][$i] = array(
+      '#type' => 'fieldset',
+      '#collapsible' => FALSE,
+      '#collapsed' => FALSE,
+    );
+
+    $form['table']['rows'][$i]['sku'] = array(
+      '#type' => 'textfield',
+      '#title' => '',
+      '#size' => 10,
+      '#maxlength' => 20,
+    );
+    $form['table']['rows'][$i]['quantity'] = array(
+      '#type' => 'textfield',
+      '#title' => '',
+      '#size' => 4,
+      '#maxlength' => 4,
+      '#default_value' => '1',
+    );
+  }
+
+  // Adds "Add another item" button.
+  $form['item_actions'] = array(
+    '#type' => 'actions',
+    '#weight' => 0,
+  );
+  $form['item_actions']['add_item'] = array(
+    '#type' => 'submit',
+    '#value' => t('Add more item'),
+    '#submit' => array('commerce_quickorder_form_add_item'),
+    // Since we are adding an items before submit, don't validate until later.
+    '#limit_validation_errors' => array(),
+  );
+
+  // If we have more than one item, this button allows removal of the
+  // last item added.
+  if ($form_state['num_items'] > 1) {
+    $form['item_actions']['remove_item'] = array(
+      '#type' => 'submit',
+      '#value' => t('Remove last item'),
+      '#submit' => array('commerce_quickorder_form_remove_item'),
+      // Since we are removing an item, don't validate until later.
+      '#limit_validation_errors' => array(),
+    );
+  }
+
+  $form['actions'] = array(
+    '#type' => 'actions',
+    '#weight' => 1,
+  );
+  $form['actions']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Add to Cart'),
+  );
+
+  return $form;
+}
+
+/**
+ * Adding an extra row to the form.
+ */
+function commerce_quickorder_form_add_item($form, &$form_state) {
+  // Everything in $form_state is persistent, so we'll just use
+  // $form_state['add_item'].
+  $form_state['num_items']++;
+
+  // Setting $form_state['rebuild'] = TRUE causes the form to be rebuilt again.
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Removing the last row from the form.
+ */
+function commerce_quickorder_form_remove_item($form, &$form_state) {
+  if ($form_state['num_items'] > 1) {
+    $form_state['num_items']--;
+  }
+
+  // Setting $form_state['rebuild'] = TRUE causes the form to be rebuilt again.
+  $form_state['rebuild'] = TRUE;
+}
+
+/**
+ * Validate form data and check for valid SKU's.
+ */
+function commerce_quickorder_form_validate($form, &$form_state) {
+  foreach ($form_state['values']['rows'] as $key => $value) {
+    if (!$value['sku']) {
+      form_set_error("items][$key][sku", t('This field is required.'));
+    }
+    // This validates sku's against the available products.
+    if (!$product = commerce_product_load_by_sku($value['sku'])) {
+      form_set_error("items][$key][sku", t('Part Number is invalid.'));
+    }
+    elseif (!$product->status) {
+      form_set_error("items][$key][sku", t('Part Number is currently disabled.'));
+    }
+    if (!$value['quantity']) {
+      form_set_error("items][$key][quantity", t('This field is required.'));
+    }
+  }
+}
+
+/**
+ * Adding form items to the cart.
+ */
+function commerce_quickorder_form_submit($form, &$form_state) {
+  global $user;
+  // Add each item to cart.
+  foreach ($form_state['values']['rows'] as $value) {
+    $product = commerce_product_load_by_sku($value['sku']);
+    $line_item = commerce_product_line_item_new($product, $value['quantity']);
+    commerce_cart_product_add($user->uid, $line_item);
+  }
+  $form_state['redirect'] = 'cart';
+}

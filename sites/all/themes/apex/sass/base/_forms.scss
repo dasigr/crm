@@ -1,0 +1,64 @@
+.input-text {
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  width: 100%;
+  
+  @media (min-width: $tab) {
+    width: auto;
+  }
+}
+
+.textarea {
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  width: 100%;
+}
+  
+.form-item {
+  label {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+  }
+}
+
+fieldset {
+  margin-bottom: 1em;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  @extend .input-text;
+}
+
+textarea {
+  @extend .textarea;
+}
+
+input[type="submit"] {
+  @extend .btn-primary;
+  
+  &:disabled {
+    @extend .btn-disabled;
+  }
+}
+
+select {
+  background-color: #ffffff;
+  background-image: url('../icons/select-icon.png');
+  background-repeat: no-repeat;
+  background-position: right 5px center;
+  background-size: 12px;
+  border: 1px solid #dddddd;
+  cursor: pointer;
+  transition: border-color 0.4s ease 0s;
+  z-index: 1;
+  padding: 9px 25px 9px 10px;
+  @include border-radius(4px);
+  @include appearance('none');
+}

@@ -1,0 +1,24 @@
+.messages {
+	padding: 10px;
+	margin: 0.5em 0;
+	
+	&.status {
+	  border: 1px solid $success;
+    background-color: lighten($success, 40%);
+	}
+	
+	&.info {
+    border: 1px solid $info;
+    background-color: lighten($info, 40%);
+  }
+  
+  &.warning {
+    border: 1px solid $warning;
+    background-color: lighten($warning, 40%);
+  }
+	
+	&.error {
+	  border: 1px solid $danger;
+	  background-color: lighten($danger, 40%);
+	}
+}

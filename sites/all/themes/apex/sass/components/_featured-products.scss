@@ -1,0 +1,37 @@
+#block-views-featured-products-block {
+  
+}
+
+.view-id-featured_products {
+  .views-row {
+    margin-bottom: $vert-spacing-unit;
+  }
+
+  h4 {
+    font-weight: 600;
+    margin: 1em 0;
+  }
+
+  a {
+    color: $link-color;
+    text-decoration: none;
+    display: block;
+    
+    &.add-to-wishlist {
+      color: $link-color;
+      display: inline-block;
+    }
+    
+    &:hover,
+    &:focus {
+      color: darken($link-color, 10%);
+    }
+  }
+  
+  @include susy-breakpoint($tab, $tab-columns) {
+    .views-row {
+      @include gallery(3 of 12);
+      margin-bottom: 0;
+    }
+  }
+}

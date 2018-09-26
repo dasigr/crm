@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function stateside_menu() {
+  $items['admin/stateside/fix_product_prices'] = array(
+    'title' => 'Fix Product Prices',
+    'page callback' => 'stateside_fix_product_prices',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+/**
+ * Fix product prices.
+ *
+ * @return array
+ */
+function stateside_fix_product_prices() {
+  $build = array(
+    '#markup' => t('Fixing product prices.')
+  );
+
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'commerce_product')
+    ->entityCondition('bundle', 'product');
+  $result = $query->execute();
+
+  if (isset($result['commerce_product']) === FALSE) {
+    return $build;
+  }
+
+  $commerce_product_ids = array_keys($result['commerce_product']);
+  foreach ($commerce_product_ids as $commerce_product_id) {
+    $commerce_product = commerce_product_load($commerce_product_id);
+    $commerce_product_wrapper = entity_metadata_wrapper('commerce_product', $commerce_product);
+
+    $price = $commerce_product_wrapper->commerce_price->value();
+    $price['data']['include_tax'] = 'vat';
+    $commerce_product_wrapper->commerce_price->set($price);
+
+    $commerce_product_wrapper->save();
+  }
+
+  return $build;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function stateside_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'commerce_checkout_form_checkout') {
+    $profile_types = array('customer_profile_billing', 'customer_profile_shipping');
+    
+    foreach ($profile_types as $profile_type) {
+      $form[$profile_type]['commerce_customer_address'][LANGUAGE_NONE][0]['street_block']['thoroughfare']['#title'] = t('Street');
+      $form[$profile_type]['commerce_customer_address'][LANGUAGE_NONE][0]['street_block']['premise']['#title'] = t('Bldg. / Subdivision / Apartment');
+      $form[$profile_type]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['dependent_locality']['#title'] = t('Barangay / District');
+      $form[$profile_type]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['locality']['#title'] = t('City / Municipality');
+      $form[$profile_type]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['administrative_area']['#title'] = t('Province / Region');
+      $form[$profile_type]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['postal_code']['#title'] = t('Zip code');
+      $form[$profile_type]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['dependent_locality']['#size'] = 30;
+      $form[$profile_type]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['administrative_area']['#size'] = 30;
+      $form[$profile_type]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['administrative_area']['#required'] = TRUE;
+      $form[$profile_type]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['postal_code']['#required'] = TRUE;
+    }
+    
+    $form['commerce_fieldgroup_pane__group_contact_info']['field_contact_number'][LANGUAGE_NONE][0]['value']['#size'] = 30;
+  }
+}

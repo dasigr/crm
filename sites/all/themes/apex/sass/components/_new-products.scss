@@ -1,0 +1,56 @@
+#block-views-new-products-block {
+  
+}
+
+.view-id-new_products {
+  .views-row {
+    margin-bottom: $vert-spacing-unit;
+    background-color: #ffffff;
+    border: 1px solid $lighter-grey;
+    border-radius: 4px;
+    min-height: 90px;
+    padding: 1px;
+    
+    img {
+      float: left;
+      display: block;
+      margin-right: 10px;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+    
+    .views-field-title {
+      padding: 5px 10px 4px 0;
+      
+      a {
+        color: $text-color;
+        font-size: 14px;
+        line-height: 1.5em;
+        text-decoration: none;
+      }
+    }
+    
+    &:hover {
+      .views-field-title {
+        a {
+          color: $link-color;
+        }
+      }
+    }
+  }
+  
+  @include susy-breakpoint($tab, $tab-columns) {
+    .views-row {
+      @include gallery(3 of 12);
+      min-height: 83px;
+    
+      .views-field-title {
+        @include span(last 2 of 3);
+      }
+    
+      .field--name-field-image {
+        @include span(1 of 3);
+      }
+    }
+  }
+}

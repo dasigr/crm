@@ -1,0 +1,102 @@
+.l-footer {
+  display: table;
+  width: 100%;
+  box-sizing: border-box;
+  clear: both;
+  background: #2c2f33;
+  color: #949da7;
+  
+  .company-name {
+    color: #ffffff;
+    font-weight: 600;
+  }
+  
+  address {
+    font-style: normal;
+    line-height: 1.5em;
+    margin: 1em 0;
+  }
+
+  a {
+    color: #949da7;
+    
+    &.active,
+    &:hover {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+}
+
+.footer-columns {
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#block-system-powered-by {
+  font-size: 0.75em;
+  border-top: 1px solid #949da7;
+  padding: 8px 10px;
+}
+
+#block-formula-footer-menu {
+  ul.menu {
+    padding: 0;
+    
+    > li {
+      display: block;
+      
+      > ul {
+        padding-left: 0;
+        margin: 0;
+      }
+      
+      &:first-child {
+        > ul {
+          padding-left: 0;
+        }
+      }
+    }
+  
+    li {
+      list-style-type: none;
+      list-style-image: none;
+      
+      a {
+        color: #545454;
+        font-size: 0.875em;
+      
+        &:hover {
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+@include susy-breakpoint($tab, $tab-columns) {
+  #block-formula-footer-menu {
+    ul.menu {
+      > li {
+        display: inline-block;
+        
+        > ul {
+          padding-left: 40px;
+          margin: 0;
+        }
+        
+        &:first-child {
+          > ul {
+            padding-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include susy-breakpoint($desk, $desk-columns) {
+  
+}

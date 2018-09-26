@@ -1,0 +1,45 @@
+.commerce-checkout-form-shipping,
+.commerce-checkout-form-review,
+.commerce-checkout-form-checkout {
+	input[disabled="disabled"],
+	select[disabled="disabled"] {
+	  background-color: #f0f0f0;
+	}
+	
+  input#edit-continue {
+    margin-right: 10px;
+  }
+
+  input#edit-back,
+  input#edit-cancel {
+    @extend .btn-link;
+    margin-left: 10px;
+  }
+}
+
+.checkout-buttons {
+  border: 0 none;
+}
+
+.checkout-help {
+  margin-bottom: 1em;
+}
+
+.field--name-commerce-customer-shipping,
+.field--name-commerce-customer-billing {
+  margin-bottom: 1em;
+}
+
+#payment-details {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid $border-color;
+}
+
+.view-commerce-cart-summary {
+  .field--name-field-image {
+    img {
+      display: block;
+    }
+  }
+}

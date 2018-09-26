@@ -1,0 +1,64 @@
+html {
+	height: 100%;
+}
+
+body.maintenance-page {
+	height: 100%;
+	
+	.l-page {
+	  height: 100%;
+	  
+	  .container {
+	    transform: translate(0%, 100%);
+	  }
+	}
+	
+	.l-page,
+	.l-header,
+	.l-main {
+	  display: table;
+	  width: 100%;
+	  box-sizing: border-box;
+	  clear: both;
+	}
+	
+	.l-branding {
+	  @include span(16 of $desk-columns);
+	}
+	
+	.site-logo {
+	  img {
+	    margin: 0 auto;
+	  }
+	}
+	
+	.l-main {
+	  .l-content {
+	    text-align: center;
+	    
+	    h1 {
+	      font-size: 1.25em;
+	    }
+	    
+	    p {
+	      font-size: 0.75em;
+	    }
+	  }
+	}
+}
+
+@media (min-width: $tab) {
+	body.maintenance-page {
+	  .l-main {
+	    .l-content {
+	      h1 {
+	        font-size: 1.5em;
+	      }
+	      
+	      p {
+	        font-size: 1em;
+	      }
+	    }
+	  }
+	}
+}

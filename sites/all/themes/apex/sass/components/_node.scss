@@ -1,0 +1,40 @@
+.content {
+  background-color: #ffffff;
+  padding: 20px 10px;
+  border: 1px solid $lighter-grey;
+}
+
+.node {
+  .node__content {
+    @extend .content;
+  }
+
+  &.node--grid {
+    .node__content {
+      @extend .content;
+      padding: 0;
+    }
+  }
+}
+
+.view-commerce-user-orders,
+.view-commerce-wishlist-page,
+.view-commerce-cart-form {
+  .view-content {
+    @extend .content;
+  }
+}
+
+.imce-frame,
+.user-profile,
+#user-profile-form,
+#user-register-form,
+#user-pass,
+#user-login,
+#commerce-checkout-form-shipping,
+#commerce-checkout-form-complete,
+#commerce-checkout-form-review,
+#commerce-checkout-form-checkout,
+.view-commerce-user-orders {
+  @extend .content;
+}

@@ -1,0 +1,5 @@
+name = Commerce Quickorder
+description = This adds a form for adding items directly to your cart by SKU.
+dependencies[] = commerce_cart
+package = Commerce (contrib)
+core = 7.x

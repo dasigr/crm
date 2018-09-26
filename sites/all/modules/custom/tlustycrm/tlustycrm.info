@@ -1,0 +1,4 @@
+name = Tlusty CRM
+description = Custom CRM module.
+package = Custom
+core = 7.x

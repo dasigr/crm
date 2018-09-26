@@ -1,0 +1,426 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function formula_menu() {
+  $items['admin/dashboard/report'] = array(
+    'title' => 'Report',
+    'page callback' => 'formula_report',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function formula_form_alter(&$form, &$form_state, $form_id) {
+  if (strpos($form_id, 'simplenews_block_form_') !== FALSE) {
+    $form['mail']['#attributes']['placeholder'] = t('Email');
+  }
+
+  if (strpos($form_id, 'commerce_cart_add_to_cart_form_') !== FALSE) {
+    $form['submit']['#weight'] = 48;
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function formula_form_search_block_form_alter(&$form, &$form_state) {
+  $form['search_block_form']['#attributes']['placeholder'] = t('Keyword or Part #');
+  $form['actions']['submit']['#value'] = t('Search');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function formula_form_search_form_alter(&$form, &$form_state) {
+  $form['basic']['keys']['#attributes'] = array('placeholder' => t('Search') . '...');
+  $form['basic']['keys']['#title'] = NULL;
+  $form['basic']['keys']['#size'] = 15;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+//function formula_form_user_login_alter(&$form, &$form_state) {
+//  $form['name']['#title_display'] =  t('invisible');
+//  $form['name']['#placeholder'] =  t('Username');
+//  unset($form['name']['#description']);
+//
+//  $form['pass']['#title_display'] =  t('invisible');
+//  $form['pass']['#placeholder'] =  t('Password');
+//  unset($form['pass']['#description']);
+//}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+//function formula_form_user_pass_alter(&$form, &$form_state) {
+//  $form['name']['#title_display'] =  t('invisible');
+//  $form['name']['#placeholder'] =  t('Username or e-mail address');
+//  unset($form['name']['#description']);
+//}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+//function formula_form_user_register_form_alter(&$form, &$form_state) {
+//  $form['account']['name']['#title_display'] =  t('invisible');
+//  $form['account']['name']['#placeholder'] =  t('Username');
+//
+//  $form['account']['mail']['#title_display'] =  t('invisible');
+//  $form['account']['mail']['#placeholder'] =  t('E-mail address');
+//}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+//function formula_form_webform_client_form_461_alter(&$form, &$form_state) {
+//  $form['submitted']['firstname']['#title_display'] =  t('invisible');
+//  $form['submitted']['firstname']['#placeholder'] =  t('Firstname');
+//
+//  $form['submitted']['lastname']['#title_display'] =  t('invisible');
+//  $form['submitted']['lastname']['#placeholder'] =  t('Lastname');
+//
+//  $form['submitted']['email']['#title_display'] =  t('invisible');
+//  $form['submitted']['email']['#attributes']['placeholder'] =  t('E-mail address');
+//
+//  $form['submitted']['message']['#title_display'] =  t('invisible');
+//  $form['submitted']['message']['#placeholder'] =  t('Message');
+//}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+//function formula_form_commerce_checkout_form_checkout_alter(&$form, &$form_state) {
+//  $form['account']['login']['mail']['#title_display'] = 'invisible';
+//  $form['account']['login']['mail']['#placeholder'] = t('E-mail address*');
+//  $form['account']['login']['mail']['#size'] = 30;
+//
+//  $address_profiles = array('customer_profile_billing', 'customer_profile_shipping');
+//
+//  foreach ($address_profiles as $address_profile) {
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['name_block']['name_line']['#title_display'] = 'invisible';
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['name_block']['name_line']['#placeholder'] = t('Full name*');
+//
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['country']['#title_display'] = 'invisible';
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['country']['#placeholder'] = t('Country*');
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['country']['#disabled'] = TRUE;
+//
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['street_block']['thoroughfare']['#title'] = t('Street');
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['street_block']['thoroughfare']['#title_display'] = 'invisible';
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['street_block']['thoroughfare']['#placeholder'] = t('Street*');
+//
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['street_block']['premise']['#title'] = t('Premise');
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['street_block']['premise']['#title_display'] = 'invisible';
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['street_block']['premise']['#placeholder'] = t('Bldg name or Subdivision name');
+//
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['dependent_locality']['#title'] = t('Barangay / District');
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['dependent_locality']['#title_display'] = 'invisible';
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['dependent_locality']['#placeholder'] = t('Barangay / District');
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['dependent_locality']['#size'] = 30;
+//
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['locality']['#title'] = t('City / Municipality');
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['locality']['#title_display'] = 'invisible';
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['locality']['#placeholder'] = t('City / Municipality*');
+//
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['administrative_area']['#title_display'] = 'invisible';
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['administrative_area']['#placeholder'] = t('Province / Region*');
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['administrative_area']['#size'] = 30;
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['administrative_area']['#required'] = TRUE;
+//
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['postal_code']['#title'] = t('Zip Code');
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['postal_code']['#title_display'] = 'invisible';
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['postal_code']['#placeholder'] = t('Zip Code*');
+//    $form[$address_profile]['commerce_customer_address'][LANGUAGE_NONE][0]['locality_block']['postal_code']['#required'] = TRUE;
+//  }
+//}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function formula_form_commerce_checkout_form_review_alter(&$form, &$form_state) {
+  $form['buttons']['continue']['#value'] = t('Confirm order');
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function formula_block_info() {
+  $blocks['contact_number'] = array(
+    'info' => t('Contact number'),
+  );
+
+  $blocks['shopping_tools'] = array(
+    'info' => t('Shopping tools'),
+  );
+
+  $blocks['customer_support'] = array(
+    'info' => t('Customer support'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function formula_block_view($delta = '') {
+  switch ($delta) {
+    case 'contact_number':
+      $block['subject'] = t('Contact number');
+      $block['content'] = formula_block_contents($delta);
+      return $block;
+      break;
+
+    case 'shopping_tools':
+      $block['subject'] = t('Shopping tools');
+      $block['content'] = formula_block_contents($delta);
+      return $block;
+      break;
+
+    case 'customer_support':
+      $block['subject'] = t('Customer support');
+      $block['content'] = formula_block_contents($delta);
+      return $block;
+      break;
+  }
+}
+
+/**
+ * A module-defined block content function.
+ */
+function formula_block_contents($delta) {
+  switch ($delta) {
+    case 'contact_number':
+      $html = '
+				<div class="contact-number">
+					<p><i class="fa fa-mobile"> (956) 721-6875</i><br/>
+					<i class="fa fa-phone"> (32) 231-6184</i></p>
+				</div>
+      ';
+
+      $content = array(
+        '#markup' => $html,
+      );
+      return $content;
+      break;
+
+    case 'shopping_tools':
+      global $user;
+
+      $wishlist_link = ($user->uid != 0) ? 'user/'.$user->uid.'/wishlist' : 'user';
+      $wishlist_count = formula_wishlist();
+      $wishlist = l('<i class="fa fa-heart"> <span class="item-count">'.$wishlist_count.'</span></i>', $wishlist_link, array('html' => TRUE, 'attributes' => array('class' => array('wishlist'))));
+
+      $html = '
+        <div class="shopping-tools">
+  				<div class="item">
+  					' . $wishlist . '
+  				</div>
+  			</div>
+      ';
+
+      $content = array(
+        '#markup' => $html,
+      );
+      return $content;
+      break;
+
+    case 'customer_support':
+      global $user;
+
+      $variables = array(
+        'links' => array(
+          array(
+            'title' => t('My account'),
+            'href' => 'user',
+          ),
+          array(
+            'title' => t('Wishlist'),
+            'href' => 'user/' . $user->uid . '/wishlist',
+          ),
+          array(
+            'title' => t('Quick order'),
+            'href' => 'quick-order',
+          ),
+          array(
+            'title' => t('Shopping cart'),
+            'href' => 'cart',
+          ),
+          array(
+            'title' => t('Order history'),
+            'href' => 'user/' . $user->uid . '/orders',
+          ),
+          array(
+            'title' => t('Order tracking'),
+            'href' => 'order-tracking',
+          ),
+        ),
+        'attributes' => array(
+          'class' => array('menu'),
+        ),
+      );
+
+      $html = theme('links', $variables);
+
+      $content = array(
+        '#markup' => $html,
+      );
+      return $content;
+      break;
+  }
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function formula_block_view_alter(&$data, $block) {
+  if ($block->delta == 'cart') {
+    global $user;
+
+    $cart_summary = formula_cart_summary();
+    $cart_link = l('<i class="fa fa-shopping-cart"> <span class="item-count">'.$cart_summary['qty'].'</span></i> ' . $cart_summary['total'], 'cart', array('html' => TRUE, 'attributes' => array('class' => array('cart'))));
+
+    $content = $cart_link;
+    $content .= $data['content'];
+
+    $data['content'] = $content;
+  }
+
+  if ($block->delta == 'powered-by') {
+    $year = format_date(time(), 'custom', 'Y');
+    $site_name = l(variable_get('site_name'), '/');
+    $data['content'] = '<span>&copy; ' . $year . ' ' . $site_name . '. All Rights Reserved.</span>';
+  }
+}
+
+/**
+ * Allows modules to alter Commerce currency definitions.
+ *
+ * By default Commerce provides all active currencies according to ISO 4217.
+ * This hook allows you to change the formatting properties of existing
+ * definitions.
+ *
+ * Additionally, because every currency's default conversion rate is 1, this
+ * hook can be used to populate currency conversion rates with meaningful
+ * values. Conversion rates can be calculated using any currency as the base
+ * currency as long as the same base currency is used for every rate.
+ *
+ * @see hook_commerce_currency_info()
+ */
+function formula_commerce_currency_info_alter(&$currencies) {
+  $currencies['PHP']['symbol_placement'] = 'before';
+  $currencies['PHP']['code_placement'] = 'hidden';
+  $currencies['PHP']['symbol_spacer'] = ' ';
+}
+
+/**
+ * Get cart summary.
+ *
+ * @return array
+ */
+function formula_cart_summary() {
+  global $user;
+
+  drupal_add_js(drupal_get_path('module', 'formula') . '/js/formula.js');
+
+  $cart = array(
+    'qty' => '0',
+    'total' => commerce_currency_format('0', 'PHP'),
+  );
+
+  // First check to ensure there are products in the shopping cart.
+  if ($order = commerce_cart_order_load($user->uid)) {
+    $wrapper = entity_metadata_wrapper('commerce_order', $order);
+
+    // If there are one or more products in the cart...
+    if (commerce_line_items_quantity($wrapper->commerce_line_items, commerce_product_line_item_types()) > 0) {
+
+      $line_items = $wrapper->commerce_line_items;
+      $total = commerce_line_items_total($line_items);
+
+      if ($total['amount']) {
+        $cart['qty'] = commerce_line_items_quantity($line_items);
+        $cart['total'] = commerce_currency_format($total['amount'], 'PHP');
+      }
+    }
+  }
+
+  return $cart;
+}
+
+/**
+ * Get number of items in wishlist.
+ *
+ * @return number
+ */
+function formula_wishlist() {
+  global $user;
+
+  $count = 0;
+
+  // First check to ensure there are products in the shopping cart.
+  if ($order = commerce_wishlist_order_load($user->uid)) {
+    $wrapper = entity_metadata_wrapper('commerce_order', $order);
+
+    // If there are one or more products in the cart...
+    if (commerce_line_items_quantity($wrapper->commerce_line_items, commerce_product_line_item_types()) > 0) {
+
+      $line_items = $wrapper->commerce_line_items;
+      $count = commerce_line_items_quantity($line_items);
+    }
+  }
+
+  return $count;
+}
+
+function formula_report() {
+  $total_cost = getTotalCost();
+
+  $build = array(
+    '#markup' => '<p>' . t('Total Cost: ') . number_format($total_cost, 2) . '</p>'
+  );
+
+  return $build;
+}
+
+function getTotalCost() {
+  $sql = "SELECT *
+      FROM commerce_product
+      INNER JOIN field_data_commerce_price
+      ON field_data_commerce_price.entity_id = commerce_product.product_id
+      INNER JOIN field_data_commerce_stock
+      ON field_data_commerce_stock.entity_id = commerce_product.product_id
+      INNER JOIN field_data_field_product_cost
+      ON field_data_field_product_cost.entity_id = commerce_product.product_id
+      WHERE type = 'resistor'";
+  $args = array(":type" => 'resistor');
+
+  $query = db_query($sql);
+  $query->execute();
+
+  $total_cost = 0;
+  $gross_sale = 0;
+  foreach ($query->fetchAllAssoc('product_id') as $product) {
+    $stock = $product->commerce_stock_value;
+    $unit_cost = $product->field_product_cost_amount;
+    $unit_price = $product->commerce_price_amount;
+
+    $product_cost = $unit_cost * $stock;
+    $product_price = $unit_price * $stock;
+
+    $total_cost += $product_cost;
+    $gross_sale += $product_price;
+  }
+
+  $profit = $gross_sale - $total_cost;
+  $profit_percentage = ($profit/$total_cost) * 100;
+
+  $amount = commerce_currency_amount_to_decimal($total_cost, 'PHP');
+  return $amount;
+}

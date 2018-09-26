@@ -1,0 +1,89 @@
+#block-search-form {
+  display: none;
+  box-sizing: border-box;
+  clear: both;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+
+.search-block-form,
+.search-form {
+  input[type="text"] {
+    background-color: #f0f0f0;
+    border: 0;
+    padding: 0;
+    margin: 17px 0;
+    font-size: 1.25em;
+    width: 100%;
+    border-bottom: 1px solid #555555;
+    border-radius: 0;
+  }
+
+  input[type="submit"] {
+    float: right;
+    padding: 10px 15px;
+    display: none;
+  }
+}
+
+.l-region--search {
+	.form-item-search-block-form {
+	  display: block;
+	  padding: 0 50px;
+	  width: 100%;
+	}
+	
+	#block-search-form {
+	  width: 100%;
+	  margin-left: -10px;
+	  margin-right: -10px;
+	}
+}
+
+@include susy-breakpoint($tab, $tab-columns) {
+  .l-region--search {
+    .form-item-search-block-form {
+      display: inline-block;
+      padding: 0;
+      width: auto;
+    }
+  }
+	
+  #block-search-form {
+    display: block;
+    position: relative;
+  }
+  
+  .search-block-form,
+  .search-form {
+    margin-top: 20px;
+    margin-bottom: 4px;
+    
+    input[type="text"] {
+      background-color: #ffffff;
+      width: 270px;
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: 0;
+      padding: 7px 10px;
+      border: 1px solid #dddddd;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      display: inline-block;
+      float: none;
+      padding: 9px 15px 7px;
+    }
+  }
+}
+
+@include susy-breakpoint($desk, $desk-columns) {
+  .search-block-form,
+  .search-form {
+    input[type="text"] {
+      width: 400px;
+    }
+  }
+}

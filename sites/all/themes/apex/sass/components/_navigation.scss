@@ -1,0 +1,198 @@
+.l-region--navigation {
+  background: $primary;
+}
+
+.navigation-wrapper {
+  background-color: $primary;
+  
+  .container {
+  }
+}
+
+#block-system-main-menu {
+  display: none;
+  background-color: $primary;
+  border-bottom: 1px solid $primary;
+  box-sizing: border-box;
+  clear: both;
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  z-index: 50;
+  
+  ul.menu {
+    padding: 0;
+    margin: 0;
+    
+    > li {
+      list-style-type: none;
+      list-style-image: none;
+      display: block;
+    
+      > a {
+        color: #fff;
+        text-decoration: none;
+        padding: 0 20px;
+        line-height: 2.5em;
+        display: block;
+        
+        &:hover {
+          background-color: darken($primary, 5%);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * User Menu
+ */
+
+.user-menu-wrapper {
+  display: table;
+  width: 100%;
+  clear: both;
+  box-sizing: border-box;
+}
+
+#block-system-user-menu {
+  padding: 1px 0;
+  float: right;
+  
+  ul.menu {
+    padding: 0;
+    margin: 0;
+    text-align: right;
+    
+    > li {
+      list-style-type: none;
+      list-style-image: none;
+      display: inline-block;
+      border-left: 1px solid #fff;
+      line-height: 14px;
+      
+      > a {
+        font-size: 0.875em;
+        color: #fff;
+        text-decoration: none;
+        padding: 0 5px;
+        line-height: 1em;
+        
+        &:hover,
+        &:focus {
+          color: #fff;
+        }
+      }
+      
+      &:first-child {
+        border-left: 0;
+      }
+    }
+  }
+}
+
+ul.breadcrumb {
+  padding: 0;
+  margin: 0 0 10px 0;
+  
+  > li {
+    list-style-type: none;
+    list-style-image: none;
+    display: inline-block;
+    
+    > a {
+      font-size: 0.75em;
+      text-decoration: none;
+      padding: 0 5px;
+    }
+  }
+}
+
+/* Footer menu */
+.block--formula-customer-support,
+.block--menu-menu-footer-menu {
+  ul.menu {
+    padding: 0;
+    
+    > li {
+      list-style-type: none;
+      list-style-image: none;
+    }
+  }
+
+  a {
+    display: block;
+    padding: 4px 0;
+  }
+}
+
+@include susy-breakpoint($tab, $tab-columns) {
+  .toggle-btn {
+    display: none;
+  }
+  
+  .toggle {
+    display: none;
+  }
+  
+  .navigation-wrapper {
+	  .container {
+	    padding-left: 10px;
+	    padding-right: 10px;
+	  }
+	}
+  
+  .l-region--header-top-right {
+    float: right;
+  }
+  
+  #block-system-main-menu,
+  #block-system-user-menu {
+    display: block;
+  }
+  
+  #block-system-main-menu {
+    position: relative;
+    top: 0;
+  
+    ul.menu {
+      > li {
+        display: inline-block;
+        text-align: left;
+      
+        > a {
+          &.active,
+          &:hover {
+            background-color: darken($primary, 5%);
+          }
+        }
+      }
+    }
+  }
+  
+  #block-system-user-menu {
+    background-color: transparent;
+    position: relative;
+    float: right;
+    border: 0;
+    
+    ul.menu {
+      > li {
+        border-left: 1px solid $light-grey;
+        
+        > a {
+          color: $text-color;
+          
+          &:hover,
+          &:focus {
+            color: $text-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include susy-breakpoint($desk, $desk-columns) {
+  
+}

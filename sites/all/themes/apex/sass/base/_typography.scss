@@ -1,0 +1,64 @@
+html {
+  font-size: $base-font-size;
+  line-height: 1.5em;
+}
+
+body {
+  background-color: #ffffff;
+  font-family: $base-font-family;
+  color: $text-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $base-font-family;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: $h1-font-size;
+  line-height: 1.2em;
+}
+
+h2 {
+  font-size: $h2-font-size;
+  line-height: 1.25em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  font-size: $h3-font-size;
+}
+
+h4 {
+  font-size: $h4-font-size;
+}
+
+h5 {
+  font-size: $h5-font-size;
+}
+
+h6 {
+  font-size: $h6-font-size;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+  
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+h2.title {
+  a {
+    text-decoration: none;
+  }
+}

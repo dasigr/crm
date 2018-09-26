@@ -1,0 +1,4 @@
+name = Stateside Surplus
+description = Customize components in Drupal.
+package = Custom
+core = 7.x

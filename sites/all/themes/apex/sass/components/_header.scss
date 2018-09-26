@@ -1,0 +1,34 @@
+.l-region--header {
+  position: relative;
+}
+
+.header-top {
+  background-color: $primary;
+}
+
+.header {
+  .container {
+    padding: 0 10px;
+  }
+}
+
+@include susy-breakpoint($tab, $tab-columns) {
+  .header {
+    padding-top: 26px;
+  }
+  
+  .l-region--header {
+    border-top: 0;
+  }
+
+  .header-top {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    border-bottom: 1px solid #dddddd;
+  }
+}
+
+@include susy-breakpoint($desk, $desk-columns) {
+}

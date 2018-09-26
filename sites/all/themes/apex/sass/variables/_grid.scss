@@ -1,0 +1,26 @@
+// Susy Variables
+
+// Set consistent vertical and horizontal spacing units.
+$vert-spacing-unit: 20px;
+$horz-spacing-unit: 1em;
+
+// Define Susy grid variables mobile first.
+$susy: (
+  flow: ltr,
+  math: fluid,
+  output: float,
+  gutter-position: after,
+  container: 1200px,
+  container-position: center,
+  columns: 4,
+  gutters: 1/4,
+  column-width: 4em,
+  global-box-sizing: content-box,
+  last-flow: to,
+);
+
+// Susy Media Layouts @see http://susy.oddbird.net/guides/reference/#ref-media-layouts
+$tab: 44em; // At 44em,
+$tab-columns: 12; // use 12 columns.
+$desk: 70em; // At 70em,
+$desk-columns: 16; // use 16 columns.

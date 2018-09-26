@@ -1,0 +1,39 @@
+.toggle-btn {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  
+  &.btn-left {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    z-index: 50;
+  }
+  
+  &.btn-right {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    z-index: 50;
+  }
+}
+
+.toggle {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0 5px;
+  
+  &.main-menu-toggle {
+    margin-right: 0;
+    
+    .fa-navicon {
+      font-size: 24px;
+    }
+  }
+  
+  &.search-form-toggle {
+    .fa-search {
+      font-size: 24px;
+    }
+  }
+}

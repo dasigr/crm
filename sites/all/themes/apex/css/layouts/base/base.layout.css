@@ -1,0 +1,187 @@
+/*******************************************************************************
+ * base.layout.scss
+ *
+ * Styling of the "simple" layout demonstrating the Compass grid extension Susy
+ * and building mobile first layouts.
+ ******************************************************************************/
+/* line 38, ../../../sass/layouts/base/base.layout.scss */
+.container {
+  max-width: 1232px;
+  margin-left: auto;
+  margin-right: auto; }
+  /* line 12, ../../../../../../../../../../.rvm/gems/ruby-1.9.3-p551@omega.apex/gems/susy-2.2.5/sass/susy/output/support/_clearfix.scss */
+  .container:after {
+    content: " ";
+    display: block;
+    clear: both; }
+
+/* line 42, ../../../sass/layouts/base/base.layout.scss */
+.l-content-top,
+.l-region--highlighted,
+.l-region--help,
+.l-main,
+.l-region--sidebar-first,
+.l-region--sidebar-second,
+.l-content-bottom {
+  margin-bottom: 20px; }
+
+/* line 53, ../../../sass/layouts/base/base.layout.scss */
+.node-type-page .navigation-wrapper {
+  margin-bottom: 20px; }
+
+/* line 59, ../../../sass/layouts/base/base.layout.scss */
+.header-top .container {
+  padding-left: 10px;
+  padding-right: 10px; }
+
+@media (min-width: 44em) {
+  /* line 66, ../../../sass/layouts/base/base.layout.scss */
+  .container {
+    max-width: 1232px; }
+
+  /* line 70, ../../../sass/layouts/base/base.layout.scss */
+  .l-region--navigation {
+    clear: both; }
+
+  /* line 74, ../../../sass/layouts/base/base.layout.scss */
+  .l-region--search {
+    width: 49.15254%;
+    float: left;
+    margin-right: 1.69492%; }
+
+  /* line 77, ../../../sass/layouts/base/base.layout.scss */
+  .l-region--header {
+    width: 23.72881%;
+    float: right;
+    margin-right: 0; }
+
+  /* line 82, ../../../sass/layouts/base/base.layout.scss */
+  .has-sidebar-first .l-content {
+    width: 74.57627%;
+    float: right;
+    margin-right: 0; }
+  /* line 85, ../../../sass/layouts/base/base.layout.scss */
+  .has-sidebar-first .l-region--sidebar-first {
+    width: 23.72881%;
+    float: left;
+    margin-right: 1.69492%; }
+
+  /* line 92, ../../../sass/layouts/base/base.layout.scss */
+  .has-sidebar-second .l-content,
+  .has-two-sidebars .l-content {
+    width: 66.10169%;
+    float: left;
+    margin-right: 1.69492%; }
+  /* line 95, ../../../sass/layouts/base/base.layout.scss */
+  .has-sidebar-second .l-region--sidebar-first,
+  .has-sidebar-second .l-region--sidebar-second,
+  .has-two-sidebars .l-region--sidebar-first,
+  .has-two-sidebars .l-region--sidebar-second {
+    width: 32.20339%;
+    float: right;
+    margin-right: 0; }
+  /* line 99, ../../../sass/layouts/base/base.layout.scss */
+  .has-sidebar-second .l-region--sidebar-second,
+  .has-two-sidebars .l-region--sidebar-second {
+    clear: right; }
+
+  /* line 104, ../../../sass/layouts/base/base.layout.scss */
+  .l-region--footer-first {
+    width: 23.72881%;
+    float: left;
+    margin-right: 1.69492%; }
+
+  /* line 108, ../../../sass/layouts/base/base.layout.scss */
+  .l-region--footer-second {
+    width: 23.72881%;
+    float: left;
+    margin-right: 1.69492%; }
+
+  /* line 112, ../../../sass/layouts/base/base.layout.scss */
+  .l-region--footer-third {
+    width: 23.72881%;
+    float: left;
+    margin-right: 1.69492%; }
+
+  /* line 116, ../../../sass/layouts/base/base.layout.scss */
+  .l-region--footer-fourth {
+    width: 23.72881%;
+    float: right;
+    margin-right: 0;
+    clear: none; } }
+@media (min-width: 76em) {
+  /* line 123, ../../../sass/layouts/base/base.layout.scss */
+  .container {
+    max-width: 1232px; }
+
+  /* line 127, ../../../sass/layouts/base/base.layout.scss */
+  .l-branding,
+  .l-main,
+  .footer-columns,
+  .l-region--footer {
+    padding-left: 0;
+    padding-right: 0; }
+
+  /* line 135, ../../../sass/layouts/base/base.layout.scss */
+  .l-branding {
+    width: 32.20339%;
+    float: left;
+    margin-right: 1.69492%; }
+
+  /* line 138, ../../../sass/layouts/base/base.layout.scss */
+  .l-region--search {
+    width: 49.15254%;
+    float: left;
+    margin-right: 1.69492%; }
+
+  /* line 141, ../../../sass/layouts/base/base.layout.scss */
+  .l-region--header {
+    width: 15.25424%;
+    float: right;
+    margin-right: 0; }
+
+  /* line 146, ../../../sass/layouts/base/base.layout.scss */
+  .has-sidebar-first .l-content {
+    width: 74.57627%;
+    float: right;
+    margin-right: 0; }
+  /* line 149, ../../../sass/layouts/base/base.layout.scss */
+  .has-sidebar-first .l-region--sidebar-first {
+    width: 23.72881%;
+    float: left;
+    margin-right: 1.69492%; }
+
+  /* line 155, ../../../sass/layouts/base/base.layout.scss */
+  .has-sidebar-second .l-content {
+    width: 74.57627%;
+    float: left;
+    margin-right: 1.69492%; }
+  /* line 158, ../../../sass/layouts/base/base.layout.scss */
+  .has-sidebar-second .l-region--sidebar-second {
+    width: 23.72881%;
+    float: right;
+    margin-right: 0;
+    clear: none; }
+
+  /* line 165, ../../../sass/layouts/base/base.layout.scss */
+  .has-two-sidebars .l-content {
+    width: 49.15254%;
+    float: left;
+    margin-right: 1.69492%;
+    margin-left: 33.89831%; }
+  /* line 169, ../../../sass/layouts/base/base.layout.scss */
+  .has-two-sidebars .l-region--sidebar-first,
+  .has-two-sidebars .l-region--sidebar-second {
+    width: 23.72881%;
+    float: left;
+    margin-right: 1.69492%; }
+  /* line 173, ../../../sass/layouts/base/base.layout.scss */
+  .has-two-sidebars .l-region--sidebar-first {
+    margin-left: -76.27119%; }
+  /* line 176, ../../../sass/layouts/base/base.layout.scss */
+  .has-two-sidebars .l-region--sidebar-second {
+    float: right;
+    margin-right: 0;
+    clear: none; } }
+
+/*# sourceMappingURL=base.layout.css.map */

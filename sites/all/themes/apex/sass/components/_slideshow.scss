@@ -1,0 +1,144 @@
+#block-views-slideshow-block {
+  
+}
+
+.view-slideshow {
+  position: relative;
+}
+
+.views_slideshow_slide {
+  img {
+    display: block;
+  }
+}
+
+.views-slideshow-controls-bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+.views-slideshow-controls-text-pause {
+  display: none;
+}
+
+.views-slideshow-controls-text-previous,
+.views-slideshow-controls-text-next {
+  background-color: $lighter-grey;
+  width: 40px;
+  height: 40px;
+  padding: 6px 10px;
+  opacity: 0.3;
+  
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.views-slideshow-controls-text-previous {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  z-index: 10;
+}
+
+.views-slideshow-controls-text-next {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  z-index: 10;
+}
+
+.widget_pager {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.views-slideshow-pager-field-item {
+  background-color: $lighter-grey;
+  height: 14px;
+  width: 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  display: inline-block;
+  
+  > div {
+    display: none;
+  }
+  
+  &.active {
+    background-color: $primary;
+  }
+}
+
+.views-slideshow-pager-fields.widget_pager {
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+}
+
+.views_slideshow_slide {
+  width: 100% !important;
+}
+
+.slide-inner {
+	background-position: center center;
+  position: relative;
+  min-height: 200px;
+}
+
+.slide-image {
+  
+}
+
+.slide-text {
+  display: table;
+  width: 100%;
+  box-sizing: border-box;
+  clear: both;
+  position: absolute;
+  bottom: 0;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(0, 0, 0, 0) 0px, rgba(34, 34, 34, 1) 100%) repeat scroll 0 0;
+  text-align: center;
+  
+  .container {
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+  
+  h2 {
+    font-size: 32px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    letter-spacing: 1px;
+  
+    a {
+      color: #ffffff;
+    }
+  }
+}
+
+@include susy-breakpoint($tab, $tab-columns) {
+  .slide-inner {
+    min-height: 320px;
+  }
+  
+  .slide-text {
+    h2 {
+      margin-bottom: 1.5em;
+    }
+  }
+}
+
+@include susy-breakpoint($desk, $desk-columns) {
+  .slide-inner {
+    min-height: 480px;
+  }
+  
+  .slide-text {
+    h2 {
+      margin-bottom: 2em;
+    }
+  }
+}

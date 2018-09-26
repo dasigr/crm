@@ -1,0 +1,31 @@
+#block-formula-contact-number {
+  display: none;
+  margin-top: 10px;
+  
+  .contact-number {
+    p {
+      margin: 0;
+    }
+    
+    .fa-mobile {
+      font-size: 12px;
+      font-weight: 300;
+    }
+    
+    .fa-phone {
+      font-size: 17px;
+      font-weight: 600;
+      color: $primary;
+    }
+  }
+}
+
+@include susy-breakpoint($tab, $tab-columns) {
+  #block-formula-contact-number {
+    display: block;
+    margin-top: 30px;
+  }
+}
+
+@include susy-breakpoint($desk, $desk-columns) {
+}

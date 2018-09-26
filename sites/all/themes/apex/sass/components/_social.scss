@@ -1,0 +1,40 @@
+.social-share {
+	border-top: 1px solid $border-color;
+	padding-top: 20px;
+	margin-top: 20px;
+}
+
+.social-links {
+  ul {
+    padding: 0;
+    
+    > li {
+      list-style-type: none;
+      list-style-image: none;
+      display: inline-block;
+    }
+  }
+
+  a {
+    display: block;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    
+    &.facebook:hover {
+      color: #3b5998;
+    }
+    
+    &.twitter:hover {
+      color: #1da1f2;
+    }
+    
+    &.linkedin:hover {
+      color: #00a0dc;
+    }
+    
+    &.youtube:hover {
+      color: #cd201f;
+    }
+  }
+}

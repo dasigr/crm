@@ -1,0 +1,32 @@
+.l-page {
+  background-color: #f0f0f0;
+}
+  
+.l-content-top {
+  background: $dark-grey;
+  padding-top: $vert-spacing-unit;
+  padding-bottom: $vert-spacing-unit;
+}
+
+.front .l-content-top {
+  padding-bottom: 10px;
+}
+
+.main-wrapper {
+  margin-top: 10px;
+  
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.l-content-bottom {
+  .container {
+    padding: 0 10px;
+  }
+}
+
+.l-content {
+  margin-bottom: 20px;
+}

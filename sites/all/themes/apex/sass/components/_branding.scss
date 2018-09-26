@@ -1,0 +1,54 @@
+.l-branding {
+  display: table;
+  width: 100%;
+  clear: both;
+  box-sizing: border-box;
+}
+
+.site-name {
+  font-size: 27px;
+  line-height: 1em;
+  margin: 16px 40px;
+  
+  a {
+    color: $text-color;
+    text-decoration: none;
+  }
+}
+
+.site-logo {
+  img {
+    display: block;
+    margin: 9px auto;
+    max-height: 36px;
+  }
+}
+
+.company-name {
+  letter-spacing: 1px;
+}
+
+@include susy-breakpoint($tab, $tab-columns) {
+  .l-branding {
+    @include span(5 of $tab-columns);
+  }
+
+  .site-name {
+    font-size: 36px;
+    margin: 22px 0;
+  }
+
+  .site-logo {
+    img {
+      margin: 10px 0 10px 20px;
+      max-width: 110px;
+      max-height: 110px;
+    }
+  }
+}
+
+@include susy-breakpoint($desk, $desk-columns) {
+  .l-branding {
+    @include span(4 of $tab-columns);
+  }
+}

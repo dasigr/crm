@@ -1,0 +1,17 @@
+.view-catalog.view-display-id-page {
+  .views-row {
+    margin-bottom: $vert-spacing-unit;
+  }
+  
+  @include susy-breakpoint($tab, $tab-columns) {
+    .views-row {
+      @include gallery(3 of 9);
+    }
+  }
+  
+  @include susy-breakpoint($desk, $desk-columns) {
+    .views-row {
+      @include gallery(3 of 12);
+    }
+  }
+}

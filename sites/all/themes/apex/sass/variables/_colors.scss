@@ -1,0 +1,30 @@
+/* Colors */
+$white:   #E0E0E0;
+$blue:    #2770f6;
+$green:   #5bb300;
+$cyan:    #2AABD2;
+$yellow:  #EB9316;
+$red:     #fd3d3d;
+$teal:     #fd3d3d;
+
+/* Shades of Gray */
+$grey: #333333;
+$lighter-grey: lighten($grey, 65%);
+$light-grey: lighten($grey, 30%);
+$dark-grey: darken($grey, 15%);
+$darker-grey: darken($grey, 20%);
+
+/* Color Branding */
+$default: $light-grey;
+$primary: $red;
+$success: $green;
+$info:    $cyan;
+$warning: $yellow;
+$danger:  $red;
+
+/* Default Color */
+$text-color: $grey;
+$link-color: $primary;
+$border-color: $lighter-grey;
+
+$border: 1px solid $border-color;

@@ -1,0 +1,50 @@
+#block-formula-shopping-tools {
+  display: none;
+  float: left;
+  margin-left: 5px;
+}
+
+.wishlist {
+  font-size: 14px;
+  line-height: 1em;
+  padding: 5px;
+  color: #ffffff;
+  display: block;
+  
+  .item-count {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 12px;
+    z-index: 10;
+    background-color: #ffb400;
+    border-radius: 15px;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    text-indent: 4px;
+    color: $text-color;
+  }
+  
+  .fa {
+    position: relative;
+    width: 32px;
+  }
+}
+  
+.add-to-wishlist {
+  width: 40px;
+  padding: 10px 12px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+@include susy-breakpoint($tab, $tab-columns) {
+  .wishlist {
+    color: $text-color;
+  }
+}
+
+@include susy-breakpoint($desk, $desk-columns) {
+  
+}

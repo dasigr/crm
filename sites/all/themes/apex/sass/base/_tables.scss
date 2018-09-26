@@ -1,0 +1,27 @@
+table {
+	background-color: transparent;
+	margin-bottom: $vert-spacing-unit;
+	max-width: 100%;
+	width: 100%;
+	
+	> thead {
+	  > tr {
+      > th {
+        background-color: transparent;
+        padding: 8px;
+        border-bottom: 2px solid #ddd;
+        vertical-align: bottom;
+      }
+    }
+	}
+	
+	> tbody {
+    > tr {
+      > td {
+        padding: 8px;
+        border-top: 1px solid #ddd;
+        vertical-align: top;
+      }
+    }
+  }
+}
